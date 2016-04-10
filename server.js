@@ -14,7 +14,9 @@ app.use(morgan('dev')); // log requests to the console
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port     = process.env.PORT || 8080; // set our port
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+//var port     = process.env.PORT || 8080; // set our port
 
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://eeshan:eeshan@ds017070.mlab.com:17070/eeshan'); // connect to our database
@@ -117,5 +119,6 @@ app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
+app.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", server_port " + port );
+});

@@ -19,7 +19,9 @@ var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 //var port     = process.env.PORT || 8080; // set our port
 
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://eeshan:eeshan@ds017070.mlab.com:17070/eeshan'); // connect to our database
+//mongoose.connect('mongodb://eeshan:eeshan@ds017070.mlab.com:17070/eeshan'); // connect to eeshan mlab database
+mongoose.connect('mongodb://eeshan:eeshan@ds021650.mlab.com:21650/eeshan'); // connect to nilesh mlab database
+
 var Bear     = require('./app/models/bear.js');
 
 // ROUTES FOR OUR API
@@ -120,5 +122,5 @@ app.use('/api', router);
 // START THE SERVER
 // =============================================================================
 app.listen(server_port, server_ip_address, function () {
-  console.log( "Listening on " + server_ip_address + ", server_port " + port );
+  console.log( "Listening on " + server_ip_address + ", server_port " + server_port );
 });
